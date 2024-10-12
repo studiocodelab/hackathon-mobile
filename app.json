@@ -25,6 +25,20 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "179878d3-3af8-4639-9dd1-918032e96ad6"
+      }
+    },
+    "owner": "yorkshireterrier",
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": ["fonts/Roboto-Regular.tff", "fonts/OpenSans-Bold.ttf"]
+        }
+      ]
+    ]
   }
 }
