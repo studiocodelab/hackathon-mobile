@@ -3,7 +3,8 @@ import { createSlice, configureStore } from "@reduxjs/toolkit"
 const counterSlice = createSlice({
   name: 'counter',
   initialState: {
-    value: 0
+    value: 0,
+    sessionId: ''
   },
   reducers: {
         incremented: state => {
@@ -18,11 +19,14 @@ const counterSlice = createSlice({
         },
         increaseBy: (state, action) => {
             state.value += action.payload
+        },
+        setSessionId: (state, action) => {
+          state.sessionId = action.payload
         }
     }
 })
 
-export const { incremented, decremented, increaseBy } = counterSlice.actions
+export const { incremented, decremented, increaseBy, setSessionId } = counterSlice.actions
 
 const store = configureStore({
   reducer: {

@@ -1,7 +1,7 @@
 
       import 'react-native-url-polyfill/auto';
       import { StatusBar } from 'expo-status-bar';
-      import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, ImageBackground } from 'react-native';
+      import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView, ImageBackground, Image } from 'react-native';
       import Template from './../template/Template';
       import API from './../template/API';
       import { setMotive } from './../template/Motive';
@@ -55,18 +55,10 @@
         return (
         <Template.Container>
           <Template.Container flex={2}>
-            <Template.Text style={{fontWeight: 700, fontSize: 30}}>Welcome back</Template.Text>
+            <Template.Text style={{fontWeight: 700, fontSize: 30}}>Witaj!</Template.Text>
           </Template.Container>
           <Template.Container flex={3} fullWidth={true}>
-            <Template.Scrollable horizontal={true}>
-              {CARDS.map((element, index) => {
-                return (
-                <Template.Card style={{height: 'auto', width: 200, margin: 10}} title={element.title} subtitle={element.subtitle} key={index} Actions={CardButton}>
-                  <CardContent text={element.text}/>
-                </Template.Card>
-                )
-              })}
-            </Template.Scrollable>
+            <Image source={{uri: 'https://pppt.orlen.pl/content/experience-fragments/internet/pppt/pl/pl/site/header/master/_jcr_content/root/image_2064652404_cop_1670031078.coreimg.90.1024.png/1706224082983/pppt.png'}} height={150} width={243} />
           </Template.Container>
           <Template.Container flex={4}>
           </Template.Container>

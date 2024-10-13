@@ -18,23 +18,15 @@
     import { Provider } from 'react-redux'; 
     import './translation.js'
     import i18n from './translation.js';
+    import CONTEXT from './context';
+    import { useDispatch } from 'react-redux';
+    import { setSessionId } from './reduxstorage.js';
     
     let globalState;
     
     let IS_CHECKED = false;
-
-    const CURRENT_SESSION_ID = gql`
-      query Query {
-        newSessionId
-      }
-    `
     
     export default function App() {
-
-      useEffect(() => {
-      apolloClient.query({query: CURRENT_SESSION_ID}).then((data) => {
-        globalThis.sessionId =  data.data.newSessionId;
-      })}, []);
 
       const [state, setState] = useState({logged: 'unknown', loginPanel: 'signin'});
     

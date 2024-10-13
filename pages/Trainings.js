@@ -162,7 +162,7 @@
           <Template.Modal id="modal" animationType={"slide"}>
             <Template.Container>
               <Template.Card style={{marginTop: -60}}>
-                  <Template.Text style={{fontSize: 25, fontWeight: 800, marginTop: 0, marginBottom: 20}}>{title}</Template.Text>
+                  <Template.Text style={{fontSize: 25, fontWeight: 800, marginTop: 0, marginBottom: 20, minWidth: 350}}>{title}</Template.Text>
                   <Template.Scrollable style={{height: '75%'}}>
                     <Template.Text style={{fontSize: 15, fontWeight: 700, marginBottom: 15}}>{description}</Template.Text>
                     <Template.Text style={{fontSize: 18, fontWeight: 700}}>
@@ -178,7 +178,7 @@
                   </Template.Container>
               </Template.Card>
               <Template.Button onClick={() => {Items.getElementById("modal").state.hide();}} textStyle={{fontWeight: 700, color: 'white', fontSize: 20}} style={{backgroundColor: '#FF605C', padding: 8, borderRadius: 8, marginTop: -200, width: '80%'}} hoverColor={'#DD403A'}>{t("Close")}</Template.Button>
-               <Template.Button style={{backgroundColor: '#000', padding: 8, borderRadius: 8, marginTop: -100, width: '80%'}} hoverColor={'#333'} textStyle={{fontWeight: 700, color: 'white', fontSize: 20}} onClick={join}>{t("Dołącz")}</Template.Button>
+               <Template.Button style={{backgroundColor: 'navy', padding: 8, borderRadius: 8, marginTop: -100, width: '80%'}} hoverColor={"#0005AA"} textStyle={{fontWeight: 700, color: 'white', fontSize: 20}} onClick={join}>{t("Dołącz")}</Template.Button>
             </Template.Container>
           </Template.Modal>
         )
@@ -213,7 +213,7 @@
               return (
                 <Template.Card {...element} key={index} style={{margin: 20}}>
                   <Template.Text style={{fontWeight: 600, marginBottom: 15}}>{`${t("Limit uczesnitków:")} ${element.maxUsers},\n\n${t("Czas trwania (godziny):")} ${element.length}`}</Template.Text>
-                  <Template.Button style={{paddingTop: 8, paddingBottom: 8, paddingLeft: 6, paddingRight: 6, backgroundColor: 'black', borderRadius: 10}} textStyle={{fontWeight: 700, color: 'white'}} hoverColor={'#2F2F2F'} onClick={() => {showMoreInfo(index);}}>{t("Zobacz więcej")}</Template.Button>
+                  <Template.Button style={{paddingTop: 8, paddingBottom: 8, paddingLeft: 6, paddingRight: 6, backgroundColor: 'navy', borderRadius: 10}} textStyle={{fontWeight: 700, color: 'white'}} hoverColor={"#0005AA"} onClick={() => {showMoreInfo(index);}}>{t("Zobacz więcej")}</Template.Button>
                 </Template.Card>
               )
             }) : <Text style={{textAlign: 'center', marginTop: 20, fontSize: 20, fontWeight: 700}}>Brak dostępnych szkoleń</Text>}

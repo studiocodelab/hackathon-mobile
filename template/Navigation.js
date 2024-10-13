@@ -6,7 +6,7 @@ import {setMotive, merge} from './Motive';
 import initializeComponent from './Initialize';
 import { createDrawerNavigator} from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import IIcon from './IIcon';
 
 export function Navigaton(props)

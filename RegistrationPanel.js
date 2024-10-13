@@ -118,7 +118,33 @@ export default function RegistrationPanel(props) {
               password: pass,
               session_token: token,
             }
-          }).then(() => {
+          }).then(async () => {
+            let data = [];
+            while (data.length === 0) {
+              console.log(data);
+              data = (await apolloClient.query({
+                query: GET_USERS,
+                variables: {
+                  login: {
+                    value: login,
+                    filter: "eq"
+                  }
+                }, fetchPolicy: 'no-cache'
+              })).data.getUsers;
+            }
+            await apolloClient.mutate({
+              mutation: gql`
+              mutation InsertUserInfo($roleId: Int, $userId: Int) {
+                insertUserInfo(roleId: $roleId, userId: $userId) {
+                  id
+                }
+              }
+              `,
+              variables: {
+                roleId: 1,
+                userId: data[0].id
+              }
+            })
             logUser(login, pass, token);
           })
         } else {
@@ -163,15 +189,15 @@ export default function RegistrationPanel(props) {
         <Container style={{backgroundColor: "white"}} fullWidth="true">
         <Container fullWidth={"true"} flex={5} style={{alignItems: 'flex-start', padding: 15}} motive={{fontFamily: FontFamily.poppinsSemiBold, fontWeight: "600"}}>
             <TText style={styles.logIn}>Sign up</TText>
-            <TText style={{color: titleColor, fontSize: titleFontSize, margin: 5, paddingLeft: 15}}><IIcon name={loginIcon} color={"#0027FF"} size={titleFontSize * 0.8}/> {loginText}</TText>
+            <TText style={{color: titleColor, fontSize: titleFontSize, margin: 5, paddingLeft: 15}}><IIcon name={loginIcon} color={"navy"} size={titleFontSize * 0.8}/> {loginText}</TText>
             <TextBox placeholderTextColor={'rgba(0,0,0,0.5)'} id="rlogin" placeholder="login" style={{width: '98%', marginHorizontal: 'auto' , borderWidth: 2, borderRadius: 15, padding: 7, fontSize: inputFontSize, margin: 5, borderColor: borderColor, color: borderColor}}></TextBox>
-            <TText style={{color: titleColor, fontSize: titleFontSize, margin: 5, paddingLeft: 15}}><IIcon name={passwordIcon} color={"#0027FF"} size={titleFontSize * 0.8}/> {passwordText}</TText>
+            <TText style={{color: titleColor, fontSize: titleFontSize, margin: 5, paddingLeft: 15}}><IIcon name={passwordIcon} color={"navy"} size={titleFontSize * 0.8}/> {passwordText}</TText>
             <PassBox placeholderTextColor={'rgba(0,0,0,0.5)'} id="rpassword" placeholder="password" style={{width: '98%', marginHorizontal: 'auto' , borderWidth: 2, borderRadius: 15, padding: 7, fontSize: inputFontSize,  margin: 5, borderColor: borderColor, color: borderColor}}></PassBox>
             <View style={{width: '100%'}}>
                 <Button 
                      textStyle={{color: Color.colorWhite, fontWeight: "600", fontSize: 20, paddingVertical: 10}}
-                     hoverColor={"#0004DD"}
-                     style={{fontSize: titleFontSize, borderRadius: 15, padding: 4, marginTop: 5, color: titleColor, backgroundColor: "#0027FF", width: '98%', textAlign: 'center', marginHorizontal: 'auto', marginTop: 15}} 
+                     hoverColor={"#0005AA"}
+                     style={{fontSize: titleFontSize, borderRadius: 15, padding: 4, marginTop: 5, color: titleColor, backgroundColor: "navy", width: '98%', textAlign: 'center', marginHorizontal: 'auto', marginTop: 15}} 
                      onClick={() => {onSubmit(Items.getElementById("rlogin").state.value, Items.getElementById("rpassword").state.value)}}>
                     Sign up
                 </Button>
@@ -179,8 +205,8 @@ export default function RegistrationPanel(props) {
         </Container>
         <Container>
             <Button 
-                textStyle={{color: 'royalblue', fontWeight: 800}}
-                style={{fontSize: titleFontSize * 0.5, borderRadius: 7, padding: 10, marginTop: 35, color: 'royalblue'}}
+                textStyle={{color: 'navy', fontWeight: 800}}
+                style={{fontSize: titleFontSize * 0.5, borderRadius: 7, padding: 10, marginTop: 35, color: 'navy'}}
                 onClick={() => {switchToLogin()}}>
                 Already have an account? Sign in here.
             </Button>

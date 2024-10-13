@@ -15,10 +15,11 @@ import apolloClient from './../graphqlclient';
 import { ApolloProvider, gql, useQuery } from '@apollo/client';
 import Toast from 'react-native-toast-message';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 const PROMPT = gql`
-query Query($sessionId: String, $question: String, $context: String) {
-  fixedPrompt(sessionId: $sessionId, question: $question, context: $context)
+query Query($sessionId: String, $question: String) {
+  fixedPrompt(sessionId: $sessionId, question: $question)
 }
 `
 
@@ -44,10 +45,12 @@ export default function ChatBot(props) {
 
    const {data, loading} = useQuery(GET_TRAINING);
 
+   const sessionId = useSelector((state) => state.counter.sessionId)
+
     async function ask()
     {
         setEnabled(false);
-        setDescription((await apolloClient.query({query: PROMPT, variables: {question: title, sessionId: globalThis.sessionId, context: ''}})).data.fixedPrompt);
+        setDescription((await apolloClient.query({query: PROMPT, variables: {question: title, sessionId: sessionId}})).data.fixedPrompt);
         setEnabled(true);
     }
 
@@ -61,10 +64,11 @@ export default function ChatBot(props) {
             placeholder={t("Enter title")}
           />
 
-          <Button disabled={!enabled} style={{marginTop: 10, backgroundColor: !enabled ? '#777' : 'black', paddingTop: 5, paddingBottom: 5, borderRadius: 10, width: '40%'}} textStyle={{color: 'white', fontWeight: 600, fontSize: 20}} hoverColor={!enabled ? '#777' : "#555"} onClick={ask}>{t("Submit")}</Button>
+          <Button disabled={!enabled} style={{marginTop: 10, backgroundColor: !enabled ? '#0005AA' : 'navy', paddingTop: 5, paddingBottom: 5, borderRadius: 10, width: '40%'}} textStyle={{color: 'white', fontWeight: 600, fontSize: 20}} hoverColor={!enabled ? "#0010CC" : "#0005AA"} onClick={ask}>{t("Wyślij")}</Button>
     
-          <Text style={styles.label}>{t("Description")}</Text>
+          <Text style={styles.label}>{t("Odpowiedź")}</Text>
           <TextInput
+          scrollEnabled={true}
             style={[styles.input, styles.textArea]}
             value={description}
             onChangeText={setDescription}
@@ -99,6 +103,7 @@ export default function ChatBot(props) {
       textArea: {
         height: 400,
         textAlignVertical: 'top',
+        color: 'black'
       },
     });
       

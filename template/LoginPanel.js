@@ -37,15 +37,15 @@ export default function LoginPanel({backgroundColor, titleColor, loginIcon, logi
         <Container style={{backgroundColor: "white"}} fullWidth="true">
             <Container fullWidth={"true"} flex={5} style={{alignItems: 'flex-start', padding: 15}} motive={{fontWeight: "600"}}>
                 <TText style={styles.logIn}>Sign in</TText>
-                <TText style={{color: titleColor, fontSize: titleFontSize, margin: 5, paddingLeft: 15}}><IIcon name={loginIcon} color={"#0027FF"} size={titleFontSize * 0.8}/> {loginText}</TText>
+                <TText style={{color: titleColor, fontSize: titleFontSize, margin: 5, paddingLeft: 15}}><IIcon name={loginIcon} color={"navy"} size={titleFontSize * 0.8}/> {loginText}</TText>
                 <TextBox placeholderTextColor={'rgba(0,0,0,0.5)'} id="login" placeholder="login" style={{width: '98%', marginHorizontal: 'auto' , borderWidth: 2, borderRadius: 15, padding: 7, fontSize: inputFontSize, margin: 5, borderColor: borderColor, color: borderColor}}></TextBox>
-                <TText style={{color: titleColor, fontSize: titleFontSize, margin: 5, paddingLeft: 15}}><IIcon name={passwordIcon} color={"#0027FF"} size={titleFontSize * 0.8}/> {passwordText}</TText>
+                <TText style={{color: titleColor, fontSize: titleFontSize, margin: 5, paddingLeft: 15}}><IIcon name={passwordIcon} color={"navy"} size={titleFontSize * 0.8}/> {passwordText}</TText>
                 <PassBox placeholderTextColor={'rgba(0,0,0,0.5)'} id="password" placeholder="password" style={{width: '98%', marginHorizontal: 'auto' , borderWidth: 2, borderRadius: 15, padding: 7, fontSize: inputFontSize,  margin: 5, borderColor: borderColor, color: borderColor}}></PassBox>
                 <View style={{width: '100%'}}>
                     <Button 
                          textStyle={{color: Color.colorWhite, fontWeight: "600", fontSize: 20, paddingVertical: 10}}
-                         hoverColor={"#0004DD"}
-                         style={{fontSize: titleFontSize, borderRadius: 15, padding: 4, marginTop: 5, color: titleColor, backgroundColor: "#0027FF", width: '98%', textAlign: 'center', marginHorizontal: 'auto', marginTop: 15}} 
+                         hoverColor={"#0005AA"}
+                         style={{fontSize: titleFontSize, borderRadius: 15, padding: 4, marginTop: 5, color: titleColor, backgroundColor: 'navy', width: '98%', textAlign: 'center', marginHorizontal: 'auto', marginTop: 15}} 
                          onClick={() => {onSubmit(Items.getElementById("login").state.value, Items.getElementById("password").state.value)}}>
                         Sign in
                     </Button>
@@ -53,7 +53,7 @@ export default function LoginPanel({backgroundColor, titleColor, loginIcon, logi
             </Container>
             <Container>
                 <Button 
-                    textStyle={{color: 'royalblue', fontWeight: 800}}
+                    textStyle={{color: 'navy', fontWeight: 800}}
                     style={{fontSize: titleFontSize * 0.5, borderRadius: 7, padding: 10, marginTop: 35, color: 'royalblue'}}
                     onClick={() => {switchToRegistration()}}>
                     Don't an have account? Sign up here.
